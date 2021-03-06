@@ -1,6 +1,6 @@
 # CRUDAuthenticationBlog
  
-## Tools
+# Tools
 
 - composer
 - artisan **to create controllers, migrations** 
@@ -10,7 +10,7 @@
 - laravel/collective **to help making forms**
 - laravel ui + ui vue --auth **to create a registration feature**
 
-## Command lines
+# Command lines
 
 - composer create-project laravel/laravel ProjectName
 - php artisan make:controller ControllerName
@@ -24,7 +24,7 @@
 - php artisan make:migration MigrationName
 - php artisan migrate
 
-## Tips 
+# Tips 
 
 - Configure providers for laravel collective in config/app.php: 
     Collective\Remote\RemoteServiceProvider::class,
@@ -37,11 +37,11 @@
 
 - .env enables to set database parameters
 
-## Added folders and files 
+# Added folders and files 
 
 - views: 
 
-# Folders and all files inside them
+## Folders and all files inside them
 
 - inc 
 - layouts 
@@ -51,10 +51,10 @@
 
 - database:
 
-# Folders and some files inside them 
+## Folders and some files inside them 
 
 - migrations: 
 
-# Files added 
+### Files added 
 - 2021_03_05_203608_create_posts_table.php
 - 2021_03_06_154048_add_user_id_to_posts
