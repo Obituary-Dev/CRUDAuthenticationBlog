@@ -38,7 +38,7 @@
 - .env enables to set database parameters
 
 # Added folders and files 
-
+------------------------------------------------------------------------------------------------------------------
 - views: 
 
 ## Folders and all files inside them
@@ -48,7 +48,7 @@
 - pages
 - posts 
 - auth (made authomatically)
-
+------------------------------------------------------------------------------------------------------------------
 - database:
 
 ## Folders and some files inside them 
@@ -58,3 +58,4 @@
 ### Files added 
 - 2021_03_05_203608_create_posts_table.php
 - 2021_03_06_154048_add_user_id_to_posts
+------------------------------------------------------------------------------------------------------------------
