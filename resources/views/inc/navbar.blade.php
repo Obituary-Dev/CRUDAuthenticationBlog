@@ -23,6 +23,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="/posts/create">Write</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+              </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
