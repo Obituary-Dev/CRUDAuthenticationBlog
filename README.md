@@ -23,7 +23,7 @@
 - php artisan ui vue --auth
 - php artisan make:migration MigrationName
 - php artisan migrate
-
+- php artisan storage:link **to create public/storage folder and link it to storage/public to make it accessible to the browser**
 # Tips 
 
 - Configure providers for laravel collective in config/app.php: 
@@ -57,5 +57,6 @@
 
 ### Files added 
 - 2021_03_05_203608_create_posts_table.php
-- 2021_03_06_154048_add_user_id_to_posts
+- 2021_03_06_154048_add_user_id_to_posts.php
+- 2021_03_07_122119_add_cover_image_to_posts.php
 ------------------------------------------------------------------------------------------------------------------
