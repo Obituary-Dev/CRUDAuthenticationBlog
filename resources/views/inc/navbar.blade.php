@@ -1,5 +1,6 @@
   <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
     <div class="container">
+        <img src="storage/cover_images/blog.png" width="30" height="30" alt="">
         <a class="navbar-brand" href="/">{{config('app.name', 'Blog')}}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -9,19 +10,16 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/">Welcome</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
+                <a class="nav-link" href="/about">About us</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/services">Services</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/posts">Content</a>
+                <a class="nav-link" href="/posts">Feed</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/posts/create">Write</a>
+                <a class="nav-link" href="/posts/create">Create post</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/dashboard">Dashboard</a>
