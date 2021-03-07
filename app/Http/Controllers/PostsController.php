@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -10,6 +10,16 @@ use App\Models\Post;
  */
 class PostsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -75,8 +85,15 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        return view('posts.show')->with('post', $post);
+        try {
+            $post = Post::findOrFail($id);
+            if(!$post) { 
+                return redirect('/posts')->with('error','Post Not Found'); 
+            }
+            return view('posts.show')->with('post', $post);
+        } catch (ModelNotFoundException $exception){
+            return back()->withError($exception->getMessage())->withInput();
+        }
     }
 
     /**
@@ -87,8 +104,16 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::find($id);
-        return view('posts.edit')->with('post', $post);
+        try {
+            $post = Post::findOrFail($id);
+            /** Check for correct user */
+            if (auth()->user()->id != $post->user_id){
+                return redirect('/posts')->with('error', 'Unauthorized page');
+            }
+            return view('posts.edit')->with('post', $post);
+        } catch (ModelNotFoundException $exception){
+            return back()->withError($exception->getMessage())->withInput();
+        }
     }
 
     /**
@@ -100,18 +125,24 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required'
-        ]);
-        // Create Post 
-        $post = Post::find($id);
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->save();
 
-        return redirect('/posts')->with('success', 'Post updated');
+        try {
+            $this->validate($request, [
+                'title' => 'required',
+                'body' => 'required'
+            ]);
+            // Create Post 
+            $post = Post::findOrFail($id);
+            if (auth()->user()->id != $post->user_id){
+                return redirect('/posts')->with('error', 'Unauthorized page');
+            }
+            $post->title = $request->input('title');
+            $post->body = $request->input('body');
+            $post->save();
+            return redirect('/posts')->with('success', 'Post updated');
+        } catch (ModelNotFoundException $exception){
+            return back()->withError($exception->getMessage())->withInput();
+        }
     }
 
     /**
@@ -122,8 +153,17 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
-        $post->delete();
-        return redirect('/posts')->with('success', 'Post removed');
+
+        try {
+            $post = Post::findOrFail($id);
+            /** Check for correct user */
+            if (auth()->user()->id != $post->user_id /* || Auth::user()->level == 0 */ /* DO THIS IF YOU WANT "ADMIN LEVELS" */){
+                return redirect('/posts')->with('error', 'Unauthorized page');
+            }
+            $post->delete();
+            return redirect('/posts')->with('success', 'Post removed');
+        } catch (ModelNotFoundException $exception){
+            return back()->withError($exception->getMessage())->withInput();
+        }
     }
 }

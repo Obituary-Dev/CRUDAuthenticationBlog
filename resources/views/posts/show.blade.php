@@ -7,10 +7,16 @@
     <hr>
     <small>Written on {{$post->created_at}} by {{$post->user->name}}</small>
     <hr>
-    <a href="/posts/{{$post->id}}/edit" class="btn btn-dark">Edit</a>
+    <!-- @if(!Auth::guest())
+        @if(Auth::user()->id == $post->user_id)-->
 
-    {!!Form::open(['action' => ['App\Http\Controllers\PostsController@destroy', $post->id], 'method' => 'POST'])!!}
-        {{Form::hidden('_method', 'DELETE')}}
-        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-    {!!Form::close()!!}
+        @if(Auth::user() == $post->user)
+            <a href="/posts/{{$post->id}}/edit" class="btn btn-dark">Edit</a>
+            {!!Form::open(['action' => ['App\Http\Controllers\PostsController@destroy', $post->id], 'method' => 'POST'])!!}
+                {{Form::hidden('_method', 'DELETE')}}
+                {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+            {!!Form::close()!!}
+        @endif
+    <!--    @endif
+    @endif -->
 @endsection
