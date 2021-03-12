@@ -27,7 +27,7 @@
 # Tips 
 
 - Configure providers for laravel collective in config/app.php: 
-    Collective\Remote\RemoteServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
 - Configure aliases for laravel collective in config/app.php: 
         'Form' => Collective\Html\FormFacade::class,
